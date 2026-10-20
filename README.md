@@ -19,7 +19,7 @@ and with any agent that can read files ("read `skills/lune-mode/SKILL.md` and fo
 ```
 skills/
 ├── lune-mode/        # the mode: router + playbooks/
-├── principles/       # engineering principles, referenced by section name
+├── principles/       # SKILL.md index + one file per principle, loaded individually
 └── <skill>/          # standalone skills, callable on their own
 ```
 
@@ -39,3 +39,8 @@ overwritten.
 | Claude Code | `~/.claude/skills` | `/lune-mode` |
 | Codex | `~/.agents/skills` | `$lune-mode` |
 | Other agents | — | "Read `<repo>/skills/lune-mode/SKILL.md` and follow it" |
+
+## Credits
+
+Principles adapted from [pstack](https://github.com/cursor/plugins/tree/main/pstack) by
+Lauren Tan.
