@@ -25,4 +25,17 @@ skills/
 
 ## Install
 
-Coming soon: `install.sh` will symlink `skills/*` into each harness's global skills folder.
+```sh
+./install.sh              # symlink skills/* into ~/.claude/skills and ~/.agents/skills
+./install.sh --uninstall  # remove only the links that point into this repo
+```
+
+Skills are symlinked, so edits in this repo take effect everywhere without reinstalling.
+Re-run `install.sh` after adding a new skill. Existing folders with the same name are never
+overwritten.
+
+| Harness | Folder | Invoke |
+|---|---|---|
+| Claude Code | `~/.claude/skills` | `/lune-mode` |
+| Codex | `~/.agents/skills` | `$lune-mode` |
+| Other agents | — | "Read `<repo>/skills/lune-mode/SKILL.md` and follow it" |
