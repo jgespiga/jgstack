@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orient</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #fbfaf8; --panel: #ffffff; --text: #23252b; --muted: #676b75; --line: #e2e0da;
+    --accent: #2f5fb3; --code: #f1efea;
+    --strong-bg: #dcefe2; --strong-text: #1c5c37;
+    --weak-bg: #f9dfd9; --weak-text: #8c2f1d;
+    --neutral-bg: #e7e6e1; --neutral-text: #4d5059;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16181d; --panel: #1e2127; --text: #e6e7ea; --muted: #9a9ea8; --line: #30343c;
+      --accent: #8fb3f2; --code: #2a2e36;
+      --strong-bg: #1f3d2c; --strong-text: #a4e0bb;
+      --weak-bg: #4a2620; --weak-text: #f4b8aa;
+      --neutral-bg: #33363e; --neutral-text: #c4c7cf;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 900px; margin: 0 auto; padding: 48px 24px 72px; }
+  h1 { margin: 0; font-size: 30px; line-height: 1.2; }
+  h2 { margin: 0 0 12px; font-size: 19px; color: var(--accent); }
+  .meta { margin: 6px 0 0; color: var(--muted); font-size: 14px; overflow-wrap: anywhere; }
+  section { margin-top: 36px; }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 12px 0; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  code { font: 13.5px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--code); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+  code.ref { color: var(--muted); }
+  table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; font-size: 15px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+  th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); min-width: 150px; }
+  tr:last-child td { border-bottom: 0; }
+  th { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .tag { display: inline-block; padding: 0 7px; border-radius: 999px; font-size: 12.5px; font-weight: 600; background: var(--neutral-bg); color: var(--neutral-text); }
+  .tag.strong, .tag.stated { background: var(--strong-bg); color: var(--strong-text); }
+  .tag.weak, .tag.unknown { background: var(--weak-bg); color: var(--weak-text); }
+  pre.diagram, .diagram-svg { margin: 12px 0; padding: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow-x: auto; }
+  .diagram-svg { text-align: center; }
+  .diagram-svg svg { max-width: 100%; height: auto; }
+  pre.diagram:not(.failed) { color: transparent; min-height: 120px; }
+  pre.diagram.failed { font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  pre.diagram.failed::before { content: "This diagram did not render. Its source is below.\A\A"; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+<!-- BODY -->
+</main>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script>
+  document.title = document.querySelector("h1")?.textContent || "Orient";
+
+  (async () => {
+    const blocks = [...document.querySelectorAll("pre.diagram")];
+    if (!window.mermaid) {
+      blocks.forEach((block) => block.classList.add("failed"));
+      return;
+    }
+    const dark = matchMedia("(prefers-color-scheme: dark)").matches;
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "strict",
+      suppressErrorRendering: true,
+      theme: dark ? "dark" : "neutral",
+    });
+    for (const [index, block] of blocks.entries()) {
+      try {
+        const { svg } = await mermaid.render(`diagram-${index}`, block.textContent);
+        const figure = document.createElement("div");
+        figure.className = "diagram-svg";
+        figure.innerHTML = svg;
+        block.replaceWith(figure);
+      } catch {
+        block.classList.add("failed");
+      }
+    }
+  })();
+</script>
+</body>
+</html>
