@@ -11,7 +11,7 @@ and with any agent that can read files ("read `skills/lune-mode/SKILL.md` and fo
 
 ## Principles of the stack
 
-- **Explicit only.** Skills run when you call them (`/lune-mode`, `/tdd`, ...), never on
+- **Explicit only.** Skills run when you call them (`/lune-mode`, `/orient`, ...), never on
   every prompt. Each skill sets `disable-model-invocation: true`, so idle cost is ~zero.
 - **One entry point.** `lune-mode` routes the task to a single playbook and pulls in
   other skills by relative path only when a step needs them.
