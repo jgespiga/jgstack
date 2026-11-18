@@ -31,3 +31,5 @@ Each principle lives in its own file next to this one. Read only the ones you ne
 | `migrate-callers-then-delete-legacy-apis.md` | Replacing an internal API |
 | `separate-before-serializing-shared-state.md` | Concurrent actors sharing state |
 | `redesign-from-first-principles.md` | Integrating a new requirement into a design |
+| `build-the-lever.md` | The same edit or check repeats across many places |
+| `encode-lessons-in-structure.md` | Writing the same instruction a second time |
