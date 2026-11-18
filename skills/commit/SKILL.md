@@ -39,4 +39,4 @@ Never amend, rebase, reset, push, or skip hooks with `--no-verify`. If a hook on
 
 ## 6. Report
 
-Show `git log --oneline` for the new commits, and list what you left uncommitted and why.
+Reply with the `git log --oneline` lines for the new commits. Add a line only for something the log does not show: a file you left out and why, a hook that changed or failed, or a body the history would expect that you skipped. Nothing else.
