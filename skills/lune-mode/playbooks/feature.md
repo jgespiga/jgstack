@@ -1,6 +1,6 @@
 # Feature
 
-Build or change behavior. A refactor or a migration is a feature whose behavior must stay the same.
+Add or change behavior.
 
 ## 1. Define done
 
@@ -24,17 +24,22 @@ Read [subtract-before-you-add](../../principles/subtract-before-you-add.md) and 
 - State that is mutated, retried, or shared: [make-operations-idempotent](../../principles/make-operations-idempotent.md), [separate-before-serializing-shared-state](../../principles/separate-before-serializing-shared-state.md).
 - Replacing an internal API: [migrate-callers-then-delete-legacy-apis](../../principles/migrate-callers-then-delete-legacy-apis.md).
 - A new requirement the current design does not fit: [redesign-from-first-principles](../../principles/redesign-from-first-principles.md).
+- The same edit in many places: [build-the-lever](../../principles/build-the-lever.md).
+
+When two designs both look reasonable and a quick experiment would show which is better, build the smallest throwaway version of each in a scratch folder, compare them, and delete them. Name the data shape before you write logic.
+
+If the existing code is in the way, refactor it first as a separate change, with [refactor.md](refactor.md).
 
 ## 4. Build in checked steps
 
 For more than one step, read [sequence-verifiable-units](../../principles/sequence-verifiable-units.md). Run the project's tests before you start, so you know which failures were already there.
 
-When you write tests, read [test-behavior-not-implementation](../../principles/test-behavior-not-implementation.md). For a refactor, the existing tests are the contract. Get them passing before you change anything, and do not edit them to make the refactor pass.
+When you write tests, read [test-behavior-not-implementation](../../principles/test-behavior-not-implementation.md).
 
 ## 5. Prove it
 
-Read [prove-it-works](../../principles/prove-it-works.md). Run the check from step 1, then the full test suite, type checker, and linter the project uses. Read the diff once from top to bottom and remove debug code, stray edits, and anything the task did not need.
+Read [prove-it-works](../../principles/prove-it-works.md). Run the check from step 1, then the full test suite, type checker, and linter the project uses. Check the result where users meet it: run the CLI, call the endpoint, open the page. Read the diff once from top to bottom and remove debug code, stray edits, and anything the task did not need.
 
 ## 6. Report
 
-Say what changed, how you checked it, and what you did not check. If the task includes text for people, such as docs, a README, or a PR description, read [unslop](../../unslop/SKILL.md) before you write it.
+Follow the report rules in [lune-mode](../SKILL.md). Add the design choices you made and the alternatives you rejected. If the task includes text for people, such as docs, a README, or a PR description, read [unslop](../../unslop/SKILL.md) before you write it.

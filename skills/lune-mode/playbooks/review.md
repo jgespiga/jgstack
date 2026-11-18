@@ -24,4 +24,4 @@ For every finding, write the concrete input or state that leads to the wrong res
 
 ## 5. Report
 
-List findings worst first. For each one, give `path:line`, one sentence on the problem, the failure scenario, and a suggested fix. Then give a one-line verdict: ready to merge, merge after fixes, or needs rework. If nothing survived step 4, say so and say what you checked.
+Follow the report rules in [lune-mode](../SKILL.md). List findings worst first. For each one, give `path:line`, one sentence on the problem, the failure scenario, and a suggested fix. Then give a one-line verdict: ready to merge, merge after fixes, or needs rework. If nothing survived step 4, say so and say what you checked.
