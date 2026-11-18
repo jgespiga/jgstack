@@ -33,7 +33,7 @@ Remove the logging you added in step 3, unless it would have shown this bug at f
 
 ## 5. Prove it
 
-Read [prove-it-works](../../principles/prove-it-works.md). The reproduction from step 1 must now pass. Run the full test suite. If the reproduction is a test, keep it, and check that it fails without the fix. When you commit, put the test first and the fix second, as [sequence-verifiable-units](../../principles/sequence-verifiable-units.md) describes.
+Read [prove-it-works](../../principles/prove-it-works.md). The reproduction from step 1 must now pass. Run the full test suite. If the reproduction is a test, keep it, and check that it fails without the fix. When you commit, follow [commit](../../commit/SKILL.md), and put the test first and the fix second, as [sequence-verifiable-units](../../principles/sequence-verifiable-units.md) describes.
 
 ## 6. Report
 
